@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using OrderingApplication.Contracts.Persistance;
+using OrderingApplication.Exceptions;
 using OrderingDomain.Entities;
 
 namespace OrderingApplication.Features.Orders.Commands.DeleteOrder
@@ -25,9 +26,7 @@ namespace OrderingApplication.Features.Orders.Commands.DeleteOrder
 
             if(order == null)
             {
-                _logger.LogError("Order not exsist in database");
-
-                return Unit.Value;
+                throw new NotFoundException(nameof(Order), request.Id);
             }
 
             try
