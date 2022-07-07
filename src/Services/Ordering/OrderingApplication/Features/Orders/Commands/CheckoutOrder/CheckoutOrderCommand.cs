@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace OrderingApplication.Features.Orders.Commands.CheckoutFolder
+namespace OrderingApplication.Features.Orders.Commands.CheckoutOrder
 {
     public class CheckoutOrderCommand : IRequest<int>
     {

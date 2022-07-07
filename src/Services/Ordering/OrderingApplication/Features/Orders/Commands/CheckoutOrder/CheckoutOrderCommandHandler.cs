@@ -6,7 +6,7 @@ using OrderingApplication.Contracts.Persistance;
 using OrderingApplication.Models;
 using OrderingDomain.Entities;
 
-namespace OrderingApplication.Features.Orders.Commands.CheckoutFolder
+namespace OrderingApplication.Features.Orders.Commands.CheckoutOrder
 {
     public class CheckoutOrderCommandHandler : IRequestHandler<CheckoutOrderCommand, int>
     {
