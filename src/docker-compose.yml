@@ -5,7 +5,7 @@ services:
     image: mongo
     
   basketdb:
-    image: redis:alpine
+    image: redis
 
   discountdb:
     image: postgres
@@ -19,6 +19,8 @@ services:
   portainer:
     image: portainer/portainer-ce
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
