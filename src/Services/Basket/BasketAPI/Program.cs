@@ -6,14 +6,14 @@ using MassTransit;
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager Configuration = builder.Configuration;
 // Add services to the container.
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(Program));var addres = Configuration["EventBusSettings:HostAddress"];
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionString");
 });
 builder.Services.AddMassTransit(config => {
     config.UsingRabbitMq((ctx, cfg) => {
-        cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+        cfg.Host(Configuration.GetValue<string>("EventBusSettings:HostAddress"));
     });
 });
 //builder.Services.AddMassTransitHostedService();
