@@ -22,7 +22,7 @@ export const ProductItem = ()=> {
             <img src={image} alt="" />
             <hr />
             <div className='mb-5'>
-                <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',fontSize:'16px', fontWeight:'600',marginRight:'5px'}}>
+                <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',fontSize:'18px', fontWeight:'700',marginRight:'5px'}}>
                     <p style={{}}>Цена:</p>
                     <p>1500p</p>
                 </div>

@@ -8,7 +8,7 @@ function App() {
   return (
     <>
         <Navbar/>
-      <div class="container" style={{marginBottom:'60px'}}>
+      <div class="container-xxl" style={{marginBottom:'60px'}}>
         <ProductList/> 
       </div>
         <Grid container justifyContent="center" className='fixed-bottom mb-2'>
