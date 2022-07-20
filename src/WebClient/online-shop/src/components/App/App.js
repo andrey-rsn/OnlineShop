@@ -11,9 +11,12 @@ function App() {
       <div class="container-xxl" style={{marginBottom:'60px'}}>
         <ProductList/> 
       </div>
-        <Grid container justifyContent="center" className='fixed-bottom mb-2'>
+      <footer>
+        <Grid container justifyContent="center" className='mb-2'>
            <Pagination count={10} color="primary" size="large"/>
         </Grid>
+      </footer>
+        
     </>
       
   );
