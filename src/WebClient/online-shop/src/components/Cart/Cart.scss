@@ -1,0 +1,35 @@
+//Cart
+.cart-text{
+    margin: 0;
+    margin-bottom: 30px;
+}
+.element-container{
+    background-color: antiquewhite;
+    border-radius: 3px;
+    padding: 5px 0 0 15px;
+    &__header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+    }
+    
+}
+.header{
+    &__checking{
+        display: flex;
+        flex-direction: row;
+        p{
+            font-size: 16px;
+            margin-bottom: 0;
+            line-height: 2;
+        }
+        input[type=checkbox]{
+            width: 15px;
+            margin: 0;
+            margin-right: 5px;
+            padding: 0;
+        }
+    }
+}
+    

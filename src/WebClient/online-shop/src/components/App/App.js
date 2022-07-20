@@ -1,24 +1,23 @@
 import { Navbar } from '../Navbar/Navbar';
 import '../../styles/App.css';
-import {ProductList} from '../ProductList/ProductList'
-import Pagination from '@mui/material/Pagination';
-import Grid from '@mui/material/Grid';
-
+import {MainPage} from '../../pages/MainPage/MainPage'
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { CartPage } from '../../pages/Cart/CartPage';
 function App() {
   return (
-    <>
+    <Router>
+      <div className='app'>
         <Navbar/>
-      <div class="container-xxl" style={{marginBottom:'60px'}}>
-        <ProductList/> 
+        <main>
+          <Routes>
+            <Route path="/" element={<MainPage/>}>
+            </Route>
+            <Route path="/cart" element={<CartPage/>}>
+            </Route>
+          </Routes>
+        </main>
       </div>
-      <footer>
-        <Grid container justifyContent="center" className='mb-2'>
-           <Pagination count={10} color="primary" size="large"/>
-        </Grid>
-      </footer>
-        
-    </>
-      
+    </Router>
   );
 }
 
