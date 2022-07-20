@@ -1,0 +1,25 @@
+
+.cart-element{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__img{
+        padding-top: 20px;
+        img{
+            width: 250px;
+            height: 100px;
+        }
+        input[type=checkbox]{
+            width: 20px;
+            margin: 0;
+            margin-right: 5px;
+            padding: 0;
+        }
+    &__pricing{
+        p{
+            font-weight: bold;
+        }
+        
+    }
+    }
+}

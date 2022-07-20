@@ -1,0 +1,31 @@
+.cart-text {
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.element-container {
+  background-color: antiquewhite;
+  border-radius: 3px;
+  padding: 5px 0 0 15px;
+}
+.element-container__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header__checking {
+  display: flex;
+  flex-direction: row;
+}
+.header__checking p {
+  font-size: 16px;
+  margin-bottom: 0;
+  line-height: 2;
+}
+.header__checking input[type=checkbox] {
+  width: 15px;
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+}/*# sourceMappingURL=Cart.css.map */

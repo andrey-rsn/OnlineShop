@@ -1,0 +1,21 @@
+.cart-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.cart-element__img {
+  padding-top: 20px;
+}
+.cart-element__img img {
+  width: 250px;
+  height: 100px;
+}
+.cart-element__img input[type=checkbox] {
+  width: 20px;
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+}
+.cart-element__img__pricing p {
+  font-weight: bold;
+}/*# sourceMappingURL=CartElement.css.map */
