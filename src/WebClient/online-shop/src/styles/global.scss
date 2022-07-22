@@ -1,0 +1,46 @@
+
+.text-button{
+    &_blue{
+        color:rgb(4, 4, 248);
+        &:hover{
+        cursor: pointer;
+        color:rgb(9, 9, 174);
+        }
+    }
+    &_red{
+        color:rgb(255, 0, 0);
+        &:hover{
+        cursor: pointer;
+        color:rgb(188, 6, 6);
+        }
+    }
+    &_green{
+        color:rgb(24, 237, 9);
+        &:hover{
+        cursor: pointer;
+        color:rgb(60, 205, 2);
+        }
+    }
+    
+}
+
+.line{
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    margin-left: -15px;
+    &_short{
+        width: 815px; 
+        margin-bottom: 10px;
+    }
+}
+
+.background{
+    width: 100%;
+    &_grey{
+        background-color: rgb(234, 231, 231);
+    }
+    &_white{
+        background-color: white;
+    }
+}

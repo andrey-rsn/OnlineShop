@@ -4,14 +4,20 @@
     margin-bottom: 30px;
 }
 .element-container{
-    background-color: antiquewhite;
     border-radius: 3px;
     padding: 5px 0 0 15px;
+    margin-right: 50px;
+    min-width: 850px;
     &__header{
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: start;
+        margin-bottom: 10px;
         
+    }
+    hr{
+        
+       
     }
     
 }
@@ -30,6 +36,14 @@
             margin-right: 5px;
             padding: 0;
         }
+        &:first-child{
+            margin-right: 40px;
+        }
     }
+}
+
+.cart-container{
+    display: flex;
+    flex-direction: row;
 }
     

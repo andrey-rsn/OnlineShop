@@ -4,16 +4,17 @@
 }
 
 .element-container {
-  background-color: antiquewhite;
   border-radius: 3px;
   padding: 5px 0 0 15px;
+  margin-right: 50px;
+  min-width: 850px;
 }
 .element-container__header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: start;
+  margin-bottom: 10px;
 }
-
 .header__checking {
   display: flex;
   flex-direction: row;
@@ -28,4 +29,12 @@
   margin: 0;
   margin-right: 5px;
   padding: 0;
+}
+.header__checking:first-child {
+  margin-right: 40px;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: row;
 }/*# sourceMappingURL=Cart.css.map */
