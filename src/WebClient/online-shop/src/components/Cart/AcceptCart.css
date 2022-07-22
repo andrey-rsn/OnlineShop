@@ -1,0 +1,28 @@
+.accept-cart {
+  border-radius: 4px;
+  width: 350px;
+  height: 320px;
+}
+.accept-cart__header {
+  text-align: center;
+  padding: 20px 0 0 0;
+  margin-bottom: 20px;
+}
+.accept-cart__order-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.accept-cart__total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.accept-cart > div {
+  padding-left: 15px;
+  margin-right: 15px;
+}
+
+.order-info__right-wrapper > p {
+  text-align: right;
+}/*# sourceMappingURL=AcceptCart.css.map */

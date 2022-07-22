@@ -1,0 +1,33 @@
+
+.accept-cart{
+    border-radius: 4px;
+    width: 350px;
+    height: 320px;
+    &__header{
+        text-align: center;
+        padding: 20px 0 0 0;
+        margin-bottom: 20px;
+    }
+    &__order-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    &__total{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    &>div{
+        padding-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+.order-info{
+    &__right-wrapper{
+        &>p{
+            text-align: right;
+        }
+    }
+}
