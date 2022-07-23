@@ -14,6 +14,19 @@ export const Cart = ()=>{
     const getCartElements=()=>{
         return [
             {
+                id:1,
+                isChecked: true,
+                image:'https://cdn1.ozone.ru/s3/multimedia-m/wc1200/6281544898.jpg',
+                description:{
+                    mainInfo:'мышка игровая хорошая',
+                    secondaryInfo:'цвет зеленый, 90гр',
+                    company:'Defender'
+                },
+                price:500,
+                quantity:1
+            },
+            {
+                id:2,
                 isChecked: true,
                 image:'https://cdn1.ozone.ru/s3/multimedia-m/wc1200/6281544898.jpg',
                 description:{
@@ -25,6 +38,7 @@ export const Cart = ()=>{
                 quantity:1
             },
             {
+                id:3,
                 isChecked: true,
                 image:'https://cdn1.ozone.ru/s3/multimedia-5/wc1200/6196168073.jpg',
                 description:{
@@ -36,6 +50,7 @@ export const Cart = ()=>{
                 quantity:1
             },
             {
+                id:4,
                 isChecked: true,
                 image:'https://cdn1.ozone.ru/s3/multimedia-5/wc1200/6196168073.jpg',
                 description:{
@@ -50,43 +65,26 @@ export const Cart = ()=>{
     }
 
     useEffect(() => {
-        const elements = getCartElements();
-        setCartElements(elements);
+            const elements = getCartElements();
+            setCartElements(elements);
     }, []);
 
     const removeCartElement=(key)=>{
-        const elements=cartElements.map(a => {return {...a}});
-        console.log(elements);
         console.log(key);
-
-        /* if(cartElements.length === 1 || cartElements.length === 0){
-            setCartElements([]);
-        }else if(key === 0){
-            elements.shift();
-            setCartElements([...elements]);
-            console.log(cartElements);
-        }else if(key === cartElements.length-1 ){
-            elements.pop();
-            setCartElements([...elements]);
-        }else{
-            setCartElements([...elements.slice(0,key),...elements.slice(key+1)]);
-        } */
-        elements.splice(key,1);
+        const elements=cartElements.filter(a => a.id !== key);
         setCartElements([...elements]);
     }
 
     const loadCartElements=useMemo(()=>{
-        console.log(cartElements);
-        const line= cartElements.length != 1 ? <hr className='line_short'/>: null ;
-        return cartElements.map((el,idx,arr)=>{
-            const line= cartElements.length != 1 && idx!= arr.length-1 ? <hr className='line_short'/>: null ;
+        console.log('cartElements');
+        const elems=cartElements.map((el,idx,arr)=>{
+            const withLine= cartElements.length != 1 && idx!= arr.length-1;
             return (
-                <>
-                    <CartElement key={idx} index={idx} cartElement={el} removeElement={removeCartElement}/>
-                    {line}
-                </>   
+                <CartElement key={el.id} cartElement={el} removeElement={removeCartElement} withLine={withLine}/>   
             );
         });
+        console.log(elems);
+        return elems;
     },[cartElements]);
 
     return (
@@ -116,7 +114,7 @@ export const Cart = ()=>{
 }
 
 const CartElement = (props)=>{
-    const {cartElement,index,removeElement} = props;
+    const {cartElement,removeElement,withLine} = props;
     
     const [isChecked, setIsChecked] = useState(true);
     const [image, setImage] = useState('');
@@ -139,7 +137,7 @@ const CartElement = (props)=>{
     }
 
     const onRemoveElement=()=>{
-        removeElement(index);
+        removeElement(cartElement.id);
     }
 
     useEffect(() => {
@@ -150,27 +148,32 @@ const CartElement = (props)=>{
         setQuantity(cartElement.quantity);
     }, []);
 
+    const line= withLine? <hr className='line_short'/>: null;
+
     return(
-        <div className='cart-element'>
-            <div className='cart-element__img'>
-                <input type="checkbox" value=""/>
-                <img src={""+image} alt=""/>
+        <>
+            <div className='cart-element'>
+                <div className='cart-element__img'>
+                    <input type="checkbox" value=""/>
+                    <img src={""+image} alt=""/>
+                </div>
+                <div className='cart-element__description'>
+                    <p>{description.mainInfo}</p>
+                    <p className='text-secondary'>{description.secondaryInfo}</p>
+                    <p className='text-secondary'>{description.company}</p>
+                    <p className='text-button_blue' onClick={() => onRemoveElement()}>Удалить</p>
+                </div>
+                <div className='cart-element__pricing'>
+                    <p>{price} Р</p>
+                </div>
+                <div className='cart-element__quantity'>
+                    <p>{quantity}</p>
+                    <RemoveIcon className='text-button_red' onClick={(e) => onRemoveQuantity(e)}/>
+                    <AddIcon className='text-button_green' onClick={(e) => onAddQuantity(e)}/>
+                </div>
             </div>
-            <div className='cart-element__description'>
-                <p>{description.mainInfo}</p>
-                <p className='text-secondary'>{description.secondaryInfo}</p>
-                <p className='text-secondary'>{description.company}</p>
-                <p className='text-button_blue' onClick={() => onRemoveElement()}>Удалить</p>
-            </div>
-            <div className='cart-element__pricing'>
-                <p>{price} Р</p>
-            </div>
-            <div className='cart-element__quantity'>
-                <p>{quantity}</p>
-                <RemoveIcon className='text-button_red' onClick={(e) => onRemoveQuantity(e)}/>
-                <AddIcon className='text-button_green' onClick={(e) => onAddQuantity(e)}/>
-            </div>
-        </div>
+            {line}
+        </>
     );
 }
 
