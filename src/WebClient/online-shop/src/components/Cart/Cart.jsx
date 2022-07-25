@@ -10,6 +10,7 @@ import { useMemo,useEffect,useState } from 'react';
 export const Cart = ()=>{
 
     const [cartElements, setCartElements] = useState([]);
+    const [isAllChecked, setIsAllChecked] = useState(true);
 
     const getCartElements=()=>{
         return [
@@ -67,6 +68,9 @@ export const Cart = ()=>{
     useEffect(() => {
             const elements = getCartElements();
             setCartElements(elements);
+            if(!cartElements.some(i=>!i.isChecked)){
+                setIsAllChecked(false);
+            }
     }, []);
 
     const removeCartElement=(key)=>{
@@ -75,52 +79,69 @@ export const Cart = ()=>{
         setCartElements([...elements]);
     }
 
+    const checkboxToggle=(id)=>{
+        const newElements=cartElements.map(i=>{
+            if(i.id===id){
+                i.isChecked=!i.isChecked;
+            }
+            return i;
+        })
+        console.log(newElements);
+        setCartElements(newElements);
+    }
+
+    const onAllCheckedToggle=()=>{
+        setIsAllChecked(!isAllChecked);
+    };
+
     const loadCartElements=useMemo(()=>{
         console.log('cartElements');
         const elems=cartElements.map((el,idx,arr)=>{
             const withLine= cartElements.length != 1 && idx!= arr.length-1;
             return (
-                <CartElement key={el.id} cartElement={el} removeElement={removeCartElement} withLine={withLine}/>   
+                <CartElement key={el.id} cartElement={el} removeElement={removeCartElement} withLine={withLine} checkboxToggle={checkboxToggle}/>   
             );
         });
         console.log(elems);
         return elems;
     },[cartElements]);
 
+    const cartContent=useMemo(()=>{
+        let content = cartElements.length === 0 ? <h1 className='cart-text text-center' >Корзина пуста</h1>
+                                                :<>
+                                                    <h1 className='cart-text'>Корзина</h1>
+                                                    <div className='cart-container '>
+                                                        <div className='element-container background_white'>
+                                                            <div className='element-container__header'>
+                                                                <div className='header__checking'>
+                                                                    <input type="checkbox" value="" checked={isAllChecked} onChange={()=>onAllCheckedToggle()}/>
+                                                                    <p>Выбрать все товары</p>
+                                                                </div>
+                                                                <div className='header__checking'>
+                                                                    <p className='text-button_red'>Удалить выбранные</p>
+                                                                </div>
+                                                            </div>
+                                                            <hr className='line'/>
+                                                            {loadCartElements}
+                                                        </div>
+                                                        <div className='accept-cart-container'>
+                                                            <AcceptCart cartElements={cartElements}/>
+                                                        </div>
+                                                    </div>
+                                                </>
+        return content;
+    },[cartElements]);
+
     return (
         <div className='container'>
-            <h1 className='cart-text'>Корзина</h1>
-            <div className='cart-container '>
-                <div className='element-container background_white'>
-                    <div className='element-container__header'>
-                        <div className='header__checking'>
-                            <input type="checkbox" value="" />
-                            <p>Выбрать все товары</p>
-                        </div>
-                        <div className='header__checking'>
-                            <p className='text-button_red'>Удалить выбранные</p>
-                        </div>
-                    </div>
-                    <hr className='line'/>
-                    {loadCartElements}
-                </div>
-                <div className='accept-cart-container'>
-                    <AcceptCart/>
-                </div>
-            </div>
+            {cartContent}
         </div>
-        
     );
 }
 
 const CartElement = (props)=>{
-    const {cartElement,removeElement,withLine} = props;
-    
-    const [isChecked, setIsChecked] = useState(true);
-    const [image, setImage] = useState('');
-    const [description, setDescription] = useState([]);
-    const [price, setPrice] = useState(0);
-    const [quantity, setQuantity] = useState(1);
+    const {cartElement,removeElement,withLine,checkboxToggle} = props;
+    const {isChecked,image,description,price,quantity,id} = cartElement;
 
     const onAddQuantity=(e)=>{
         const counterEl=e.target.parentNode.firstChild;  
@@ -135,17 +156,16 @@ const CartElement = (props)=>{
         if(+quantity>0)
             counterEl.innerText= +quantity-1;
     }
+    const onCheckboxToggle=()=>{
+        checkboxToggle(id);
+    }
 
     const onRemoveElement=()=>{
         removeElement(cartElement.id);
     }
 
     useEffect(() => {
-        setIsChecked(cartElement.isChecked); 
-        setImage(cartElement.image);
-        setDescription(cartElement.description); 
-        setPrice(cartElement.price); 
-        setQuantity(cartElement.quantity);
+
     }, []);
 
     const line= withLine? <hr className='line_short'/>: null;
@@ -154,7 +174,7 @@ const CartElement = (props)=>{
         <>
             <div className='cart-element'>
                 <div className='cart-element__img'>
-                    <input type="checkbox" value=""/>
+                    <input type="checkbox" value="" checked={isChecked} onChange={()=>onCheckboxToggle()}/>
                     <img src={""+image} alt=""/>
                 </div>
                 <div className='cart-element__description'>
@@ -178,6 +198,31 @@ const CartElement = (props)=>{
 }
 
 const AcceptCart = (props)=>{
+    const {cartElements} = props;
+
+    const getTotalQuantity=useMemo(()=>{
+        let totalQuantity = 0;
+        cartElements.map(i=>{
+            if(i.isChecked){
+                totalQuantity+=i.quantity;
+            }
+        });
+        return totalQuantity;
+    },[cartElements]);
+
+    const getTotalPrice=useMemo(()=>{
+        let totalPrice = 0;
+        cartElements.map(i=>{
+            if(i.isChecked){
+                totalPrice+=i.quantity*i.price;
+            }
+        });
+        return totalPrice;
+    });
+
+    useEffect(() => {
+
+    }, [cartElements]);
 
     return (
         <div className='accept-cart background_white'>
@@ -194,8 +239,8 @@ const AcceptCart = (props)=>{
                     <p>Скидка</p>
                 </div>
                 <div className='order-info__right-wrapper'>
-                    <p className='text-secondary'>1 товар * <span>500гр</span></p>
-                    <p>1000 p</p>
+                    <p className='text-secondary'>{getTotalQuantity} товар</p>
+                    <p>{getTotalPrice} p</p>
                     <p>500 p</p>
                 </div>
             </div>
@@ -205,7 +250,7 @@ const AcceptCart = (props)=>{
                         <p className='fw-bold fs-5'>Общая стоимость</p>
                     </div>
                     <div className='total__right-wrapper'>
-                        <p className='fw-bold'>1000 p</p>
+                        <p className='fw-bold'>{getTotalPrice} p</p>
                     </div>
             </div>
         </div>
