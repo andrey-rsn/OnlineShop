@@ -1,3 +1,7 @@
-.footer-info-container {
-  max-height: 50px;
+footer {
+  background-color: #f4f8fb;
+  flex-wrap: wrap;
+  font-family: var(--mainFont);
+  margin: 40px 0 0;
+  width: 100%;
 }/*# sourceMappingURL=FooterInfo.css.map */

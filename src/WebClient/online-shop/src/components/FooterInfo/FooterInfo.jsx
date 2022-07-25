@@ -4,10 +4,11 @@ import '../../styles/global.css';
 export const FooterInfo = ()=>{
 
     return (
-        <footer >
-            <div className='footer-info-container background_white'>
-                <p>Info</p>
+        <footer>
+            <div className='footer-container'>
+            <p>footer info</p>
             </div>
         </footer>
+        
     );
 }
