@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState,useMemo} from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -16,6 +16,16 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const ProductItem = ()=> {
+
+  const [isAdded,setIsAdded]= useState(false);
+
+  const buttonColor=!isAdded ?"green":"primary";
+  const buttonText= !isAdded ? "Добавлено":"В корзину";
+  const onAdd=useMemo(()=>{
+    setIsAdded(true);
+    console.log(isAdded);
+  },[]);
+
   return (
         <Grid item>
           <Item style={{textAlign:'left'}}>
@@ -29,7 +39,7 @@ export const ProductItem = ()=> {
                 
                 <h1 style={{fontSize:'12px'}}>Продукт такой то такой то хороший дешевый</h1>
             </div>
-            <Button variant="contained">В корзину</Button>
+            <Button variant="contained" style={{backgroundColor:{buttonColor}}} onClick={onAdd}>{buttonText}</Button>
             
           </Item>
         </Grid>

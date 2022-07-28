@@ -10,8 +10,19 @@ export const QantityPicker = (props) =>{
 
     const onCurrencyChange=(e)=>{
         e.preventDefault();
-        console.dir(e);
-        const newCurrency=e.target.innerText === "10+" ? 10 :+e.target.innerText;
+        let newCurrency;
+
+        if(e.type === 'click'){
+            newCurrency=e.target.innerText === "10+" ? 10 :+e.target.innerText;
+        }else if(e.type === 'change'){
+             return;
+        }else if(e.type=== 'blur'){
+            newCurrency = e.target.value === "" ? 1 : +e.target.value;
+            e.target.value=newCurrency+'';
+        }else{
+            return;
+        }
+
         setCurrency(newCurrency);
         if(newCurrency>=10){
             setIsDropDown(false);
@@ -20,6 +31,11 @@ export const QantityPicker = (props) =>{
         }
         onQuantityChange(id,newCurrency);
     };
+
+    const onBlur=(e)=>{
+        onCurrencyChange(e);
+    }
+
 
     const getCurrenciesList=useMemo(()=>{
         const elements = currencies.map(i=>{
@@ -40,7 +56,7 @@ export const QantityPicker = (props) =>{
                                   {getCurrenciesList}
                                 </ul>
                             </div>
-                            : <input class="quantity-input" type="text" value={currency} onChange={(e)=>onCurrencyChange(e)}></input>;
+                            : <input class="quantity-input" type="text" defaultValue={currency} onBlur={(e)=>onBlur(e)} onChange={(e)=>onCurrencyChange(e)}></input>;
         return content;
 
     },[isDropDown,currency]);

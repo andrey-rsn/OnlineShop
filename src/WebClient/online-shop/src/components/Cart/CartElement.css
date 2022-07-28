@@ -34,6 +34,7 @@
 }
 .cart-element__pricing {
   width: 80px;
+  margin-right: 70px !important;
 }
 .cart-element__pricing p {
   font-weight: bold;

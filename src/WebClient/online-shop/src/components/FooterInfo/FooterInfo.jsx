@@ -6,7 +6,7 @@ export const FooterInfo = ()=>{
     return (
         <footer>
             <div className='footer-container'>
-            <p>footer info</p>
+                <p>footer info</p>
             </div>
         </footer>
         
