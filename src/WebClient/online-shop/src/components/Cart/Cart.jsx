@@ -3,9 +3,8 @@ import './CartElement.css';
 import './AcceptCart.css';
 import '../../styles/global.css'
 import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import { useMemo,useEffect,useState } from 'react';
+import { QantityPicker } from '../QuantityPicker/QuantityPicker';
 
 export const Cart = ()=>{
 
@@ -68,13 +67,16 @@ export const Cart = ()=>{
     useEffect(() => {
             const elements = getCartElements();
             setCartElements(elements);
-            if(!cartElements.some(i=>!i.isChecked)){
-                setIsAllChecked(false);
-            }
     }, []);
 
+    useEffect(() => {
+        console.log(cartElements);
+        if(cartElements.some(i=>!i.isChecked)){
+            setIsAllChecked(false);
+        }
+    }, [cartElements]);
+
     const removeCartElement=(key)=>{
-        console.log(key);
         const elements=cartElements.filter(a => a.id !== key);
         setCartElements([...elements]);
     }
@@ -86,12 +88,23 @@ export const Cart = ()=>{
             }
             return i;
         })
-        console.log(newElements);
+        setCartElements(newElements);
+    }
+
+    const onQuantityChange=(id,newQuantity)=>{
+        const newElements=cartElements.map(i=>{
+            if(i.id===id){
+                i.quantity=newQuantity;
+            }
+            return i;
+        })
         setCartElements(newElements);
     }
 
     const onAllCheckedToggle=()=>{
+        console.log(isAllChecked);
         setIsAllChecked(!isAllChecked);
+        console.log(isAllChecked);
     };
 
     const loadCartElements=useMemo(()=>{
@@ -99,7 +112,7 @@ export const Cart = ()=>{
         const elems=cartElements.map((el,idx,arr)=>{
             const withLine= cartElements.length != 1 && idx!= arr.length-1;
             return (
-                <CartElement key={el.id} cartElement={el} removeElement={removeCartElement} withLine={withLine} checkboxToggle={checkboxToggle}/>   
+                <CartElement key={el.id} cartElement={el} removeElement={removeCartElement} withLine={withLine} checkboxToggle={checkboxToggle} quantityChange={onQuantityChange}/>   
             );
         });
         console.log(elems);
@@ -140,22 +153,9 @@ export const Cart = ()=>{
 }
 
 const CartElement = (props)=>{
-    const {cartElement,removeElement,withLine,checkboxToggle} = props;
+    const {cartElement,removeElement,withLine,checkboxToggle, quantityChange} = props;
     const {isChecked,image,description,price,quantity,id} = cartElement;
 
-    const onAddQuantity=(e)=>{
-        const counterEl=e.target.parentNode.firstChild;  
-        const quantity = counterEl.innerText;
-        counterEl.innerText= +quantity+1;
-    }
-
-    const onRemoveQuantity=(e)=>{
-        const counterEl=e.target.parentNode.firstChild;  
-        const quantity = counterEl.innerText;
-
-        if(+quantity>0)
-            counterEl.innerText= +quantity-1;
-    }
     const onCheckboxToggle=()=>{
         checkboxToggle(id);
     }
@@ -187,9 +187,7 @@ const CartElement = (props)=>{
                     <p>{price} Р</p>
                 </div>
                 <div className='cart-element__quantity'>
-                    <p>{quantity}</p>
-                    <RemoveIcon className='text-button_red' onClick={(e) => onRemoveQuantity(e)}/>
-                    <AddIcon className='text-button_green' onClick={(e) => onAddQuantity(e)}/>
+                <QantityPicker key={id} id={id} onQuantityChange={quantityChange}/>
                 </div>
             </div>
             {line}
