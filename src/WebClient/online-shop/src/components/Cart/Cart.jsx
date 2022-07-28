@@ -120,7 +120,7 @@ export const Cart = ()=>{
     },[cartElements]);
 
     const cartContent=useMemo(()=>{
-        let content = cartElements.length === 0 ? <h1 className='cart-text text-center' >Корзина пуста</h1>
+        let content = cartElements.length === 0 ? <h1 className='cart-text text-center empty-cart-text' >Корзина пуста</h1>
                                                 :<>
                                                     <h1 className='cart-text'>Корзина</h1>
                                                     <div className='cart-container '>
@@ -187,7 +187,7 @@ const CartElement = (props)=>{
                     <p>{price} Р</p>
                 </div>
                 <div className='cart-element__quantity'>
-                <QantityPicker key={id} id={id} onQuantityChange={quantityChange}/>
+                    <QantityPicker key={id} id={id} onQuantityChange={quantityChange}/>
                 </div>
             </div>
             {line}

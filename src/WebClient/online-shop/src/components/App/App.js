@@ -7,10 +7,11 @@ import { FooterInfo } from '../FooterInfo/FooterInfo';
 
 function App() {
   return (
+    <div className='background background_grey position-relative'>
     <Router>
-      <div className='app background_grey'>
+      <div className='app '>
         <Navbar/>
-        <main className='mb-5'>
+        <main>
           <Routes>
             <Route path="/" element={<MainPage/>}>
             </Route>
@@ -18,9 +19,11 @@ function App() {
             </Route>
           </Routes>
         </main>
-        <FooterInfo/>
       </div>
+      <FooterInfo/>
     </Router>
+    </div>
+    
   );
 }
 
