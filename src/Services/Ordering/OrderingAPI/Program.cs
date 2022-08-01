@@ -23,7 +23,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-
+app.UseCors(builder => builder.AllowAnyOrigin());
 app.MapControllers();
 app.MigrateDatabase<OrderContext>((context, service) =>
 {
