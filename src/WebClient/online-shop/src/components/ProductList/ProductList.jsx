@@ -1,13 +1,14 @@
 import {useMemo} from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { ProductItem } from '../ProductItem/ProductItem';
+import { CatalogService } from '../../services/CatalogService';
+import { useState } from 'react';
 
 export const ProductList = (props)=> {
+  const [elements, setElements] = useState([]);
+  /* const productItems=[
 
-  const productItems=[
     {
       id:1,
       img:'https://cdn1.ozone.ru/s3/multimedia-t/wc1200/6288211097.jpg',
@@ -38,13 +39,24 @@ export const ProductList = (props)=> {
       name:'Telephone',
       price: 2500
     }
-  ]
+  ] */
+  const service = new CatalogService();
+
+  const loadElements=()=>{
+    service.getAllCatalogElements()
+    .then(onLoadElements);
+  }
+
+  const onLoadElements=(newElements)=>{
+    setElements(newElements);
+  }
 
   const getProductItems=useMemo(()=>{
-    return productItems.map(i=>{
+    loadElements();
+    return elements.map(i=>{
       return (<ProductItem key={i.id} item={i}/>)
     });
-  },[productItems]); 
+  },[elements]); 
 
   return (
     <Box sx={{ flexGrow: 4 }}>
