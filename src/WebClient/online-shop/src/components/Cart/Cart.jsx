@@ -106,6 +106,10 @@ export const Cart = ()=>{
         setIsAllChecked(!isAllChecked);
         console.log(isAllChecked);
     };
+    
+    const onRemoveChecked=()=>{
+        setCartElements(cartElements.filter(i=>!i.isChecked));
+    }
 
     const loadCartElements=useMemo(()=>{
         console.log('cartElements');
@@ -131,7 +135,7 @@ export const Cart = ()=>{
                                                                     <p>Выбрать все товары</p>
                                                                 </div>
                                                                 <div className='header__checking'>
-                                                                    <p className='text-button_red'>Удалить выбранные</p>
+                                                                    <p className='text-button_red' onClick={()=>onRemoveChecked()}>Удалить выбранные</p>
                                                                 </div>
                                                             </div>
                                                             <hr className='line'/>
