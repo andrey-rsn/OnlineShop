@@ -7,10 +7,10 @@ export const MainPage = ()=>{
     
     return(
         <div className='main-page'>
-            <div class="container-xxl" style={{marginBottom:'60px'}}>
+            <div class="container-xl" style={{marginBottom:'60px'}}>
                 <ProductList/> 
             </div>
-                <Grid container justifyContent="center" >
+                <Grid container sx={{justifyContent:'center'}}>
                     <Pagination count={10} color="primary" size="large"/>
                 </Grid>
         </div>
