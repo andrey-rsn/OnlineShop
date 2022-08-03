@@ -32,11 +32,15 @@
 }
 
 .background {
-  background-size: 100% 100% cover;
+  height: 100vh;
 }
 .background_grey {
   background-color: rgb(234, 231, 231);
 }
 .background_white {
   background-color: white;
+}
+
+.product-list-skeleton > div {
+  margin-right: 35px;
 }/*# sourceMappingURL=global.css.map */

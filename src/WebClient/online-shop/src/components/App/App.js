@@ -9,7 +9,7 @@ function App() {
   return (
     <div className='background background_grey position-relative'>
     <Router>
-      <div className='app '>
+      <div className='app'>
         <Navbar/>
         <main>
           <Routes>
@@ -19,8 +19,8 @@ function App() {
             </Route>
           </Routes>
         </main>
+        <FooterInfo/>
       </div>
-      <FooterInfo/>
     </Router>
     </div>
     

@@ -2,7 +2,9 @@
 footer{
     background-color: #96c9f0;
     clear: both;
-    position: relative;
-    height: 70px;
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    bottom: -70px;
     margin-top: 45px;
 }
