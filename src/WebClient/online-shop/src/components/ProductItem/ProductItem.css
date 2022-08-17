@@ -1,0 +1,17 @@
+.product-item__footer {
+  display: flex;
+  justify-content: row;
+  align-items: flex-start;
+}
+
+.header__img {
+  width: 300px;
+  height: 250px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.add-btn {
+  align-items: flex-start;
+  width: 108px;
+}/*# sourceMappingURL=ProductItem.css.map */

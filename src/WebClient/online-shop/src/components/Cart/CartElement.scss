@@ -1,0 +1,61 @@
+
+.cart-element{
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start;
+    margin-bottom: 10px;
+    &__img{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        &>img{
+            width: 150px;
+            height: 100px;
+            object-fit: contain;
+        }
+        input[type=checkbox]{
+            width: 15px;
+            height: 15px;
+            margin: 0;
+            margin-right: 15px;
+            padding: 0;
+        }
+    }
+
+    &__description{
+        width:300px;
+        &>p{
+            margin-bottom: 5px;
+        }
+    }
+
+    &__pricing{
+        width: 80px;
+        margin-right: 70px !important;
+        p{
+            font-weight: bold;
+        }
+    }
+
+    &__quantity{
+        min-width: 80px;
+    }
+
+    &>:not(:last-child)
+    {
+        margin-right: 35px;
+    }
+    /* div{
+        margin-right: 35px;
+    } */
+
+}
+
+.element-img{
+    //background: no-repeat url("https://cdn1.ozone.ru/s3/multimedia-5/wc1200/6196168073.jpg");
+    width: 150px;
+    height: 150px;
+    background: no-repeat center/100% url("https://cdn1.ozone.ru/s3/multimedia-5/wc1200/6196168073.jpg");
+    
+}

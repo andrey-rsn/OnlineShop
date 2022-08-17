@@ -1,0 +1,51 @@
+.text-button_blue {
+  color: rgb(4, 4, 248);
+}
+.text-button_blue:hover {
+  cursor: pointer;
+  color: rgb(9, 9, 174);
+}
+.text-button_red {
+  color: rgb(255, 0, 0);
+}
+.text-button_red:hover {
+  cursor: pointer;
+  color: rgb(188, 6, 6);
+}
+.text-button_green {
+  color: rgb(24, 237, 9);
+}
+.text-button_green:hover {
+  cursor: pointer;
+  color: rgb(60, 205, 2);
+}
+
+.line {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-left: -15px;
+}
+.line_short {
+  width: 815px;
+  margin-bottom: 10px;
+}
+
+.background {
+  height: 100vh;
+}
+.background_grey {
+  background-color: rgb(234, 231, 231);
+}
+.background_white {
+  background-color: white;
+}
+
+.product-list-skeleton > div {
+  margin-right: 35px;
+}
+
+.main-page {
+  position: relative;
+  min-height: 750px;
+}/*# sourceMappingURL=global.css.map */
