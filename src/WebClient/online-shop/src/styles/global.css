@@ -43,4 +43,9 @@
 
 .product-list-skeleton > div {
   margin-right: 35px;
+}
+
+.main-page {
+  position: relative;
+  min-height: 750px;
 }/*# sourceMappingURL=global.css.map */

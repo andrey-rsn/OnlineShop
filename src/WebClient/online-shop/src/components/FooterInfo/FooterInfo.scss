@@ -3,8 +3,21 @@ footer{
     background-color: #96c9f0;
     clear: both;
     position: absolute;
-    height: 100px;
+    height: 70px;
     width: 100%;
-    bottom: -70px;
-    margin-top: 45px;
+    bottom: -60px;
+}
+
+.footer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__text{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        &>p:not(:last-child){
+            margin-right: 100px;
+        }
+    }
 }

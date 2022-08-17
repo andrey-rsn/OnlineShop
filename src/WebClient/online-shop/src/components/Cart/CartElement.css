@@ -41,7 +41,6 @@
 }
 .cart-element__quantity {
   min-width: 80px;
-  text-align: center;
 }
 .cart-element > :not(:last-child) {
   margin-right: 35px;

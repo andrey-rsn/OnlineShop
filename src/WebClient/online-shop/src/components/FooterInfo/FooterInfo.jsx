@@ -4,9 +4,13 @@ import '../../styles/global.css';
 export const FooterInfo = ()=>{
 
     return (
-        <footer className='bd-footer'>
-            <div className=''>
-                <p>footer info</p>
+        <footer className='bd-footer footer-container'>
+            <div className="footer-container__text">
+                <p>Оплата</p>
+                <p>Доставка</p>
+                <p>Контакты</p>
+                <p>Помощь</p>
+                <p>О компании</p>
             </div>
         </footer>
         
